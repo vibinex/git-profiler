@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/avikalpg/github-profile#readme",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1"
   },
   "devDependencies": {

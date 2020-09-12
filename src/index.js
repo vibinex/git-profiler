@@ -1,10 +1,20 @@
-const express = require('express')
+const express = require('express');
+require('dotenv').config();
+
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
+const port = process.env.PORT || 8000;
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
 });
 
-app.listen(8000, () => {
-  console.log('Example app listening on port 8000!')
+app.use((req, res, next) => {
+  res.send('Welcome to Express');
+});
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`)
 });
