@@ -1,4 +1,6 @@
 const express = require('express');
+// const bodyParser = require('body-parser');
+const routes = require('./routes/api');
 require('dotenv').config();
 
 const app = express();
@@ -11,8 +13,13 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use((req, res, next) => {
-  res.send('Welcome to Express');
+// app.use(bodyParser.json());
+
+app.use('/api', routes);
+
+app.use((err, req, res, next) => {
+  console.log(err);
+  next();
 });
 
 app.listen(port, () => {
