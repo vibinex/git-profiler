@@ -23,6 +23,7 @@ class Home extends React.Component {
 					className={ classes.signInButton }
 					startIcon={ <Avatar src={ githubIcon } /> }
 				>
+					{/* We will probably use Passport (passportjs.org) for auth */}
 					Sign In with GitHub
 				</Button>
 			</Container>
