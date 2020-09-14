@@ -33,6 +33,7 @@ class LanguageExtractor():
 			if len(ext_options) == 1:
 				return ext_options[0]
 			elif len(ext_options) == 0:
+				print("Warning: No languages found for file '"+filename+"'")
 				return None
 			else:
 				print("Warning: Multiple languages found for file '"+filename+"': ", ext_options)

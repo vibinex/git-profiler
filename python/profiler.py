@@ -1,5 +1,7 @@
 import sys
 from git import Repo
+from language import LanguageExtractor
+from collections import defaultdict
 
 class Profiler:
 	def __init__(self, repo_path):
@@ -24,10 +26,22 @@ class Profiler:
 		return commits_list
 
 	def retrieveDiffs(self, commits_list):
+		contributions = defaultdict(int)
+		le = LanguageExtractor()
 		for commit in commits_list:
 			# print("\t", commit.message)
-			print(commit.stats.files)
+			file_changes = commit.stats.files
+			for filename in file_changes.keys():
+				try:
+					fname = filename[filename.rindex("/")+1:]
+				except ValueError:
+					fname = filename
+				language = le.get_language_from_file(fname)
+				contributions[language] += file_changes[filename]['lines']
+		return contributions
 
 	def getProfile(self):
 		commits_list = self.getCommitsList(number_of_commits=None)
-		self.retrieveDiffs(commits_list)
+		contributions = self.retrieveDiffs(commits_list)
+		for l in contributions:
+			print(l, contributions[l])
