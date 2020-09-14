@@ -43,5 +43,4 @@ class RepositoryProfiler:
 	def getProfile(self):
 		commits_list = self.getCommitsList(number_of_commits=None)
 		contributions = self.retrieveDiffs(commits_list)
-		for l in contributions:
-			print(l, contributions[l])
+		return contributions

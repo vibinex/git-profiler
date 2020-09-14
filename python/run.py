@@ -1,4 +1,5 @@
 import os
+from collections import defaultdict
 from repository_profiler import RepositoryProfiler
 
 def main():
@@ -10,12 +11,17 @@ def main():
 		user_emails = f.readlines()
 		user_emails = [email.strip() for email in user_emails]
 
+	profile = defaultdict(int)
 	for repo_path in repos:
 		print(repo_path)
 		profiler = RepositoryProfiler(repo_path)
 		profiler.addUserEmails(user_emails)
-		profiler.getProfile()
-		# break
+		repo_profile = profiler.getProfile()
+		for lang in repo_profile:
+			profile[lang] += repo_profile[lang]
+
+	for l in profile:
+		print(l, profile[l])
 
 if __name__ == '__main__':
 	main()
