@@ -20,13 +20,16 @@ def retrieveDiffs(commits_list):
 		print(commit.stats.files)
 
 def main():
-	repo_path = "../"
-	number_of_commits = 47
+	with open("../repository_paths.txt", 'r') as f:
+		repos = f.readlines()
 
-	currDir = os.listdir(repo_path)
-	print(currDir)
-	commits_list = getCommitsList(repo_path, number_of_commits)
-	retrieveDiffs(commits_list)
+	number_of_commits = None
+	for repo in repos:
+		repo_path = repo.strip()
+		print(repo_path)
+		commits_list = getCommitsList(repo_path, number_of_commits)
+		retrieveDiffs(commits_list)
+		break
 
 if __name__ == '__main__':
 	main()
