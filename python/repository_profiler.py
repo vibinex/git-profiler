@@ -3,7 +3,7 @@ from git import Repo
 from language import LanguageExtractor
 from collections import defaultdict
 
-class Profiler:
+class RepositoryProfiler:
 	def __init__(self, repo_path):
 		self.repo = Repo(repo_path)
 		self.user_emails = set()

@@ -1,5 +1,5 @@
 import os
-from profiler import Profiler
+from repository_profiler import RepositoryProfiler
 
 def main():
 	with open("../repository_paths.txt", 'r') as f:
@@ -12,7 +12,7 @@ def main():
 
 	for repo_path in repos:
 		print(repo_path)
-		profiler = Profiler(repo_path)
+		profiler = RepositoryProfiler(repo_path)
 		profiler.addUserEmails(user_emails)
 		profiler.getProfile()
 		# break
