@@ -18,4 +18,7 @@ def find_repos(root):
 		print(error, file=sys.stderr)
 
 if __name__ == '__main__':
-	find_repos(os.path.expanduser("~"))
+	input_path = sys.argv[1] if len(sys.argv)>1 else "~"
+	if input_path[0] == "~":
+		input_path = os.path.expanduser(input_path)
+	find_repos(input_path)
