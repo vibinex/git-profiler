@@ -17,21 +17,10 @@ def retrieveDiffs(commits_list):
 			i+=1
 			continue
 		print(commit.author)
-		print(commit.size)
-		diff_obj = commit.diff(commits_list[i-1])
-		for ct in diff_obj.change_type:
-			diff_list = list(diff_obj.iter_change_type(ct))
-			print("\tNum diffs for change_type "+ct+":", len(diff_list))
-			for ct_diff in diff_list:
-				print(type(ct_diff))
-				print(ct_diff.__str__())
-				print(ct_diff.change_type, ct_diff.score)
-				print(ct_diff.a_path, ct_diff.b_path)
-			# break
+		print(commit.stats.files)
 
 def main():
-	# repo_path = "../"
-	repo_path = "/Users/apple/Work/Personal/mentorship/mentorship-website"
+	repo_path = "../"
 	number_of_commits = 47
 
 	currDir = os.listdir(repo_path)
